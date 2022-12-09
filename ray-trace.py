@@ -1,7 +1,13 @@
 import tweepy
+from decouple import config
+
+CONSUMER_KEY = config('CONSUMER_KEY')
+CONSUMER_SECRET = config('CONSUMER_SECRET')
+ACCESS_TOKEN = config('ACCESS_TOKEN')
+ACCESS_TOKEN_SECRET = config('ACCESS_TOKEN_SECRET')
 
 auth = tweepy.OAuth1UserHandler(
-   consumer_key, consumer_secret, access_token, access_token_secret
+   CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET
 )
 
 api = tweepy.API(auth)
