@@ -5,13 +5,14 @@ CONSUMER_KEY = config('CONSUMER_KEY')
 CONSUMER_SECRET = config('CONSUMER_SECRET')
 ACCESS_TOKEN = config('ACCESS_TOKEN')
 ACCESS_TOKEN_SECRET = config('ACCESS_TOKEN_SECRET')
+BEARER_TOKEN = config('BEARER_TOKEN')
 
-auth = tweepy.OAuth1UserHandler(
+client = tweepy.Client(
+   BEARER_TOKEN, CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET
+)
+
+print(
    CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET
 )
 
-api = tweepy.API(auth)
-
-public_tweets = api.home_timeline()
-for tweet in public_tweets:
-    print(tweet.text)
+client.create_tweet(text="Hello, world.")
