@@ -1,6 +1,6 @@
 # twitter-bot-ray-trace
 
-Twitter bot that posts raytrayed graphics from Gif Galaxy (1993) shovelware. Python bot designed to run on AWS Lambda, scheduled by CloudWatch events.
+Twitter bot that posts raytrayed graphics from Gif Galaxy (1993) shovelware. Python bot designed to run on AWS Lambda, scheduled by CloudWatch events. Lives here: [@ray__trace](https://twitter.com/ray__trace)
 
 Fork and add any list of urls to make your own gif bot.
 
