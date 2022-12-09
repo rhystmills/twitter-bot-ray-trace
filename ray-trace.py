@@ -1,6 +1,7 @@
 import tweepy
 import requests
 import os
+import random
 from io import BytesIO
 
 from decouple import config
@@ -25,21 +26,22 @@ v1_auth = auth = tweepy.OAuth1UserHandler(
 )
 
 def image_to_byte_array(image: Image) -> bytes:
-  # BytesIO is a fake file stored in memory
-  imgByteArr = BytesIO()
+    # BytesIO is a fake file stored in memory
+  image_byte_array = BytesIO()
   # image.save expects a file as a argument, passing a bytes io ins
-  image.save(imgByteArr, format=image.format)
+  image.save(image_byte_array, format='PNG')
   # Turn the BytesIO object back into a bytes object
-  imgByteArr = imgByteArr.getvalue()
-  return imgByteArr
+  image_byte_array = image_byte_array.getvalue()
+  return image_byte_array
 
 v1_api = tweepy.API(v1_auth)
 
-url = random.choice(list)
-path_end = os.path.basename(os.path.normpath(url))
+url = random.choice(links)
 
 response = requests.get(url)
 img = Image.open(BytesIO(response.content))
-img_bytes = image_to_byte_array(img)
+resizedImage = img.resize((img.size[0] * 2, img.size[1] * 2), Image.Resampling.NEAREST)
+img_bytes = image_to_byte_array(resizedImage)
 
+path_end = os.path.basename(os.path.normpath(url))
 v1_api.update_status_with_media(status=path_end, filename=path_end, file=img_bytes)
